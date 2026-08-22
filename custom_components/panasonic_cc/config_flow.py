@@ -135,7 +135,7 @@ class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         otp_code = user_input.get(CONF_OTP_CODE)
         try:
             errors = await self._async_try_login(
-                user_input[CONF_USERNAME], user_input[CONF_PASSWORD], otp_code
+                user_input[CONF_USERNAME], user_input[CONF_PASSWORD], otp_code, origin
             )
         except MFARequiredError:
             _LOGGER.debug("Account requires a 2FA code, asking the user for one")
@@ -179,7 +179,7 @@ class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return await self._async_create_entry(user_input)
 
     async def _async_try_login(
-        self, username: str, password: str, otp_code: str | None = None
+        self, username: str, password: str, otp_code: str | None = None, origin: str = "user"
     ) -> dict[str, str]:
         """Attempt to authenticate and fetch the account's devices.
 
@@ -188,12 +188,21 @@ class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         supplied, or AgreementNotAcceptedError if Panasonic requires
         acceptance of updated agreements — the caller is expected to
         prompt for the missing input and retry.
+
+        For a "reauth_confirm" origin this forces a completely fresh login
+        via reauthenticate() rather than start_session(), which would
+        otherwise silently keep reusing a cached (and possibly stale/stuck)
+        session from the settings file instead of the credentials the user
+        just entered.
         """
         client = async_get_clientsession(self.hass)
         api = ApiClient(username, password, client)
         errors: dict[str, str] = {}
         try:
-            await api.start_session(otp_code)
+            if origin == "reauth_confirm":
+                await api.reauthenticate(otp_code)
+            else:
+                await api.start_session(otp_code)
 
             if not api.has_devices:
                 errors["base"] = "no_devices"
