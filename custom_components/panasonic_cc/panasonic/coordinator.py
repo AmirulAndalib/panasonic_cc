@@ -136,7 +136,7 @@ class PanasonicDeviceCoordinator(DataUpdateCoordinator[int]):
 
     def get_change_request_builder(self) -> ChangeRequestBuilder:
         """Get a change request builder for the current device."""
-        return ChangeRequestBuilder(self.device)
+        return self._api_client.new_change_request(self.device)
 
     async def async_apply_changes(self, request_builder: ChangeRequestBuilder) -> None:
         """Apply changes to the device."""
