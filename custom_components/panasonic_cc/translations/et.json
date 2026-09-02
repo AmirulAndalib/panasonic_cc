@@ -1,0 +1,262 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Panasonic Comfort Cloud",
+        "description": "Sisesta oma Panasonic ID ja parool",
+        "data": {
+          "username": "Panasonic ID",
+          "password": "Parool",
+          "enable_daily_energy_sensor": "Luba päevased energiaandurid",
+          "force_enable_nanoe": "Luba Nanoe lüliti kõigil seadmetel",
+          "use_panasonic_preset_names": "Kasuta eelseadistusi „Vaikne“ ja „Võimas“ „Eco“ ja „Boost“ asemel",
+          "auto_power_on": "Lülita seade sätete muutmisel automaatselt sisse",
+          "device_fetch_interval": "Seadme andmete pärimise intervall (sekundites)",
+          "energy_fetch_interval": "Energiaandmete pärimise intervall (sekundites)"
+        }
+      },
+      "reconfigure": {
+        "title": "Panasonic Comfort Cloudi uuesti seadistamine",
+        "description": "Sisesta uuesti autentimiseks oma Panasonic ID ja parool",
+        "data": {
+          "username": "Panasonic ID",
+          "password": "Parool"
+        }
+      },
+      "otp": {
+        "title": "Kaheastmeline autentimine",
+        "description": "Sinu konto nõuab kinnituskoodi. Sisesta ühekordne kood autentimisrakendusest.",
+        "data": {
+          "otp_code": "Kinnituskood"
+        }
+      },
+      "agreements": {
+        "title": "Panasonicu uuendatud tingimused",
+        "description": "Panasonic on uuendanud oma tingimusi ja/või poliitikaid ning nõuab enne jätkamist nendega nõustumist:\n\n{agreements}",
+        "data": {
+          "accept_agreements": "Olen ülaltoodud tingimused läbi lugenud ja nendega nõus"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Panasonic Comfort Cloudi uuesti autentimine",
+        "description": "Sisesta uuesti autentimiseks kasutaja {username} praegune parool.",
+        "data": {
+          "password": "Parool"
+        }
+      }
+    },
+    "error": {
+      "no_devices": "Seadmeid ei leitud. Kontrolli kontot ja Comfort Cloudi rakendust ning proovi uuesti.",
+      "device_timeout": "Ühendus API-ga aegus.",
+      "device_fail": "Ootamatu viga API-ga ühendumisel.",
+      "invalid_user_password": "Vale Panasonic ID või parool.",
+      "invalid_otp": "Vale kinnituskood. Proovi uuesti.",
+      "agreements_not_accepted": "Jätkamiseks pead tingimustega nõustuma."
+    },
+    "abort": {
+      "device_timeout": "Ühendus seadmega aegus.",
+      "device_fail": "Ootamatu viga seadme loomisel.",
+      "already_configured": "Seade on juba seadistatud",
+      "reauth_successful": "Uuesti autentimine õnnestus."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "force_outside_sensor": "Näita välistemperatuuri andurit alati",
+          "enable_daily_energy_sensor": "Luba päevased energiaandurid (nõuab taaskäivitust)",
+          "force_enable_nanoe": "Luba Nanoe lüliti kõigil seadmetel (nõuab taaskäivitust)",
+          "use_panasonic_preset_names": "Kasuta eelseadistusi „Vaikne“ ja „Võimas“ „Eco“ ja „Boost“ asemel (nõuab taaskäivitust)",
+          "auto_power_on": "Lülita seade sätete muutmisel automaatselt sisse (nõuab taaskäivitust)",
+          "device_fetch_interval": "Seadme andmete pärimise intervall (sekundites)",
+          "energy_fetch_interval": "Energiaandmete pärimise intervall (sekundites)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "climate": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "heat_8_15": "+8/15 °C",
+              "none": "Puudub",
+              "quiet": "Vaikne",
+              "powerful": "Võimas"
+            }
+          },
+          "swing_mode": {
+            "state": {
+              "Auto": "Automaatne",
+              "Up": "Ülemine",
+              "UpMid": "Ülemine keskmine",
+              "Mid": "Keskmine",
+              "DownMid": "Alumine keskmine",
+              "Down": "Alumine",
+              "Swing": "Liikuv"
+            }
+          },
+          "swing_horizontal_mode": {
+            "state": {
+              "Auto": "Automaatne",
+              "Left": "Vasak",
+              "LeftMid": "Keskmine vasak",
+              "Mid": "Keskmine",
+              "RightMid": "Keskmine parem",
+              "Right": "Parem"
+            }
+          },
+          "fan_mode": {
+            "state": {
+              "Auto": "Automaatne",
+              "Low": "Madal",
+              "LowMid": "Madal-keskmine",
+              "Mid": "Keskmine",
+              "HighMid": "Kõrge-keskmine",
+              "High": "Kõrge"
+            }
+          }
+        }
+      }
+    },
+    "select": {
+      "horizontal_swing": {
+        "state": {
+          "Auto": "Automaatne",
+          "Left": "Vasak",
+          "LeftMid": "Keskmine vasak",
+          "Mid": "Keskmine",
+          "RightMid": "Keskmine parem",
+          "Right": "Parem"
+        }
+      },
+      "vertical_swing": {
+        "state": {
+          "Auto": "Automaatne",
+          "Up": "Ülemine",
+          "UpMid": "Ülemine keskmine",
+          "Mid": "Keskmine",
+          "DownMid": "Alumine keskmine",
+          "Down": "Alumine",
+          "Swing": "Liikuv"
+        }
+      },
+      "quiet_mode": {
+        "name": "Vaikne režiim",
+        "state": {
+          "level1": "1. tase",
+          "level2": "2. tase",
+          "level3": "3. tase",
+          "off": "Väljas"
+        }
+      },
+      "powerful_time": {
+        "name": "Võimas režiim",
+        "state": {
+          "on-30m": "30 minutit",
+          "on-60m": "60 minutit",
+          "on-90m": "90 minutit",
+          "off": "Väljas"
+        }
+      }
+    },
+    "binary_sensor": {
+      "status": {
+        "name": "Veaolek"
+      },
+      "defrost": {
+        "name": "Sulatus"
+      }
+    },
+    "sensor": {
+      "outside_temperature": {
+        "name": "Välistemperatuur"
+      },
+      "tank_temperature": {
+        "name": "Paagi temperatuur"
+      },
+      "direction": {
+        "name": "Suund"
+      },
+      "pump_status": {
+        "name": "Pumba olek"
+      },
+      "dhw_cycles_today": {
+        "name": "Sooja tarbevee tsükleid täna"
+      },
+      "zone_cycles_today": {
+        "name": "Tsooni tsükleid täna"
+      },
+      "defrost_cycles_today": {
+        "name": "Sulatustsükleid täna"
+      },
+      "heating_accumulated_energy_consumption": {
+        "name": "Kütte kogutarbimine"
+      },
+      "cooling_accumulated_energy_consumption": {
+        "name": "Jahutuse kogutarbimine"
+      },
+      "tank_accumulated_energy_consumption": {
+        "name": "Paagi kogutarbimine"
+      },
+      "accumulated_energy_consumption": {
+        "name": "Kogutarbimine"
+      },
+      "heating_energy_consumption": {
+        "name": "Kütte tarbimine"
+      },
+      "cooling_energy_consumption": {
+        "name": "Jahutuse tarbimine"
+      },
+      "tank_energy_consumption": {
+        "name": "Paagi tarbimine"
+      },
+      "energy_consumption": {
+        "name": "Tarbimine"
+      },
+      "connection_status": {
+        "name": "Ühenduse olek",
+        "state": {
+          "connected": "Ühendatud",
+          "degraded": "Häiritud",
+          "disconnected": "Ühendus puudub",
+          "authentication_error": "Autentimisviga"
+        }
+      }
+    },
+    "switch": {
+      "force_dhw": {
+        "name": "Sunni soe tarbevesi"
+      },
+      "force_heater": {
+        "name": "Sunni küttekeha"
+      },
+      "holiday_timer": {
+        "name": "Puhkusetaimer"
+      }
+    },
+    "button": {
+      "request_defrost": {
+        "name": "Käivita sulatus"
+      }
+    }
+  },
+  "services": {
+    "set_horizontal_swing_mode": {
+      "name": "Määra horisontaalne õhusuunamise režiim",
+      "description": "Määrab kliimaseadme horisontaalse õhusuunamise režiimi.",
+      "fields": {
+        "entity_id": {
+          "name": "Olemi ID",
+          "description": "Muudetavate olemite nimed."
+        },
+        "swing_mode": {
+          "name": "Õhusuunamise režiim",
+          "description": "Uus horisontaalne õhusuunamise režiim."
+        }
+      }
+    }
+  }
+}
